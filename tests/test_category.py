@@ -42,7 +42,6 @@ def test_multiple_categories():
     category2 = Category("Автомобили", "Лучшие во всём городе", [Product("Toyota", "RAV4", 4000000.0, 1)])
     assert category1.name == "Смартфоны"
     assert category2.name == "Автомобили"
-
     assert Category.category_count == 2
     assert Category.product_count == 3
 
