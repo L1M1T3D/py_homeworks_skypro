@@ -51,3 +51,23 @@ def test_empty_category():
     assert empty_category.name == "Пусто"
     assert empty_category.description == "Тут ничего нет"
     assert len(empty_category.products) == 0
+
+
+def test_add_product():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+    product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=5)
+    category = Category(name="Категория", description="Описание", products=[product1])
+    category.add_product(product2)
+    assert len(category.products) == 2
+    assert Category.product_count == 2
+    assert "Ещё продукт" in category.products[1]
+
+
+def test_products_property():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+    product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=5)
+    category = Category(name="Категория", description="Описание", products=[product1, product2])
+    product_list = category.products
+    assert len(product_list) == 2
+    assert "Продукт" in product_list[0]
+    assert "Ещё продукт" in product_list[1]
