@@ -54,7 +54,7 @@ def test_new_product_creation():
 
 
 def test_new_product_uniqueness_check(capsys):
-    category = type("Категория", (), {"products": ["Новый продукт, 150 руб., Остаток: 5 шт.\n"]})
+    category = type("Категория", (), {"products": ["Новый продукт, 150 руб. Остаток: 5 шт.\n"]})
     product_data = {"name": "Новый продукт", "description": "Это новый продукт", "price": 150.0, "quantity": 5}
     Product.new_product(product_data, category=category)
     captured = capsys.readouterr()
