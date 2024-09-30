@@ -25,5 +25,5 @@ class Category:
         """Выводит список товаров категории"""
         product_list = []
         for i in self.__products:
-            product_list.append(f"{i.name}, {int(i.price)} руб., Остаток: {i.quantity} шт.\n")
+            product_list.append(f"{i.name}, {int(i.price)} руб. Остаток: {i.quantity} шт.\n")
         return product_list
