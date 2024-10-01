@@ -78,7 +78,7 @@ def test_category_str():
     product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=5)
     category = Category(name="Категория", description="Описание", products=[product1, product2])
 
-    expected_output = "Категория, количество продуктов: 2"
+    expected_output = "Категория, количество продуктов: 15 шт."
     assert str(category) == expected_output
 
 
