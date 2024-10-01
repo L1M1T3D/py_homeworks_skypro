@@ -25,5 +25,8 @@ class Category:
         """Выводит список товаров категории"""
         product_list = []
         for i in self.__products:
-            product_list.append(f"{i.name}, {int(i.price)} руб. Остаток: {i.quantity} шт.\n")
+            product_list.append(str(i))
         return product_list
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {Category.product_count}"

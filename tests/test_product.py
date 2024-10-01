@@ -59,3 +59,18 @@ def test_new_product_uniqueness_check(capsys):
     Product.new_product(product_data, category=category)
     captured = capsys.readouterr()
     assert "В категории уже имеется такой товар." in captured.out
+
+
+def test_product_str():
+    product = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+
+    expected_output = "Продукт, 100 руб. Остаток: 10 шт."
+    assert str(product) == expected_output
+
+
+def test_product_addition():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=2)
+    product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=3)
+
+    total_value = (product1.price * product1.quantity) + (product2.price * product2.quantity)
+    assert product1 + product2 == total_value
