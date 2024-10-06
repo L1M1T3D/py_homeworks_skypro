@@ -43,3 +43,11 @@ class Product:
                 print("Вы отменили действие.")
         elif new_price > self.__price:
             self.__price = new_price
+
+    def __str__(self):
+        """Возвращает информацию о продукте"""
+        return f"{self.name}, {int(self.price)} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """Помогает посчитать итоговую стоимость, исходя из количества и стоимости 1 штуки товара"""
+        return (self.price * self.quantity) + (other.price * other.quantity)

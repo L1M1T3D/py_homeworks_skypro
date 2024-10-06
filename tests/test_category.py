@@ -71,3 +71,23 @@ def test_products_property():
     assert len(product_list) == 2
     assert "Продукт" in product_list[0]
     assert "Ещё продукт" in product_list[1]
+
+
+def test_category_str():
+    product1 = Product(name="Product1", description="Описание", price=100.0, quantity=10)
+    product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=5)
+    category = Category(name="Категория", description="Описание", products=[product1, product2])
+
+    expected_output = "Категория, количество продуктов: 15 шт."
+    assert str(category) == expected_output
+
+
+def test_category_products_str():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+    product2 = Product(name="Продукт", description="Описание", price=200.0, quantity=5)
+    category = Category(name="Категория", description="Описание", products=[product1, product2])
+
+    product_list = category.products
+    assert len(product_list) == 2
+    assert product_list[0] == str(product1)
+    assert product_list[1] == str(product2)
