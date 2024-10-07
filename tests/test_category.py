@@ -91,3 +91,19 @@ def test_category_products_str():
     assert len(product_list) == 2
     assert product_list[0] == str(product1)
     assert product_list[1] == str(product2)
+
+
+def test_add_product_to_category():
+    product = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+    category = Category(name="Категория", description="Описание", products=[])
+
+    category.add_product(product)
+    assert len(category.products) == 1
+    assert str(category.products[0]) == "Продукт, 100 руб. Остаток: 10 шт."
+
+
+def test_add_invalid_product_type():
+    category = Category(name="Категория", description="Описание", products=[])
+
+    with pytest.raises(TypeError):
+        category.add_product("Не_продукт")

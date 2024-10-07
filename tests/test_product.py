@@ -1,6 +1,6 @@
 import pytest
 
-from src.product import Product
+from src.product import LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
@@ -68,9 +68,76 @@ def test_product_str():
     assert str(product) == expected_output
 
 
-def test_product_addition():
+def test_product_price_addition():
     product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=2)
     product2 = Product(name="Ещё продукт", description="Описание", price=200.0, quantity=3)
 
     total_value = (product1.price * product1.quantity) + (product2.price * product2.quantity)
     assert product1 + product2 == total_value
+
+
+def test_product_addition():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=2)
+    product2 = Product(name="Ещё продукт", description="Описание", price=50.0, quantity=4)
+
+    result = product1 + product2
+    assert result == 400.0
+
+
+def test_product_addition_type_error():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=2)
+    smartphone = Smartphone(
+        name="Xiaomi",
+        description="Описание",
+        price=500.0,
+        quantity=1,
+        efficiency=8,
+        model="X100+ Ultra",
+        memory=128,
+        color="Black",
+    )
+
+    with pytest.raises(TypeError):
+        product1 + smartphone
+
+
+def test_smartphone_creation():
+    smartphone = Smartphone(
+        name="Смартфон",
+        description="Самый новый и мощный",
+        price=500.0,
+        quantity=3,
+        efficiency=8,
+        model="iPhone",
+        memory=128,
+        color="Black",
+    )
+
+    assert smartphone.name == "Смартфон"
+    assert smartphone.description == "Самый новый и мощный"
+    assert smartphone.price == 500.0
+    assert smartphone.quantity == 3
+    assert smartphone.efficiency == 8
+    assert smartphone.model == "iPhone"
+    assert smartphone.memory == 128
+    assert smartphone.color == "Black"
+
+
+def test_lawngrass_creation():
+    lawn_grass = LawnGrass(
+        name="Газонная трава",
+        description="Для зелёной лужайки",
+        price=20.0,
+        quantity=50,
+        country="USA",
+        germination_period=30,
+        color="Green",
+    )
+
+    assert lawn_grass.name == "Газонная трава"
+    assert lawn_grass.description == "Для зелёной лужайки"
+    assert lawn_grass.price == 20.0
+    assert lawn_grass.quantity == 50
+    assert lawn_grass.country == "USA"
+    assert lawn_grass.germination_period == 30
+    assert lawn_grass.color == "Green"
