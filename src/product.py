@@ -49,5 +49,28 @@ class Product:
         return f"{self.name}, {int(self.price)} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """Помогает посчитать итоговую стоимость, исходя из количества и стоимости 1 штуки товара"""
+        """Помогает посчитать итоговую стоимость, исходя из количества и стоимости 1 шт. товара"""
+        if type(self) is not type(other):
+            raise TypeError(f"Нельзя сложить {self.__class__.__name__} и {other.__class__.__name__}")
         return (self.price * self.quantity) + (other.price * other.quantity)
+
+
+class Smartphone(Product):
+    """Класс для продукта - Смартфона"""
+
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """Класс для продукта - Трава газонная"""
+
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

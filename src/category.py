@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     """Класс для управления категориями."""
 
@@ -17,6 +20,8 @@ class Category:
 
     def add_product(self, product):
         """Добавляет товар в категорию"""
+        if not issubclass(product.__class__, Product):
+            raise TypeError("Вам нельзя добавлять что-то другое в категорию, кроме продуктов!")
         self.__products.append(product)
         Category.product_count += 1
 
