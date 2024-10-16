@@ -1,6 +1,6 @@
 import pytest
 
-from src.product import LawnGrass, Product, Smartphone
+from src.product import BaseProduct, LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
@@ -141,3 +141,17 @@ def test_lawngrass_creation():
     assert lawn_grass.country == "USA"
     assert lawn_grass.germination_period == 30
     assert lawn_grass.color == "Green"
+
+
+def test_base_product_cannot_be_instantiated():
+    with pytest.raises(TypeError):
+        BaseProduct()
+
+
+def test_mixin_log_initialization_output(capsys):
+    Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+
+    captured = capsys.readouterr()
+
+    assert "Product" in captured.out
+    assert "('Продукт', 'Описание', 100.0, 10)" in captured.out
