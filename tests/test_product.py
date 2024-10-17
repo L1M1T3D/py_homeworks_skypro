@@ -155,3 +155,8 @@ def test_mixin_log_initialization_output(capsys):
 
     assert "Product" in captured.out
     assert "('Продукт', 'Описание', 100.0, 10)" in captured.out
+
+
+def test_init_product_with_zero_quantity():
+    with pytest.raises(ValueError):
+        Product(name="Продукт", description="Описание", price=100.0, quantity=0)

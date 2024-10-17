@@ -107,3 +107,20 @@ def test_add_invalid_product_type():
 
     with pytest.raises(TypeError):
         category.add_product("Не_продукт")
+
+
+def test_middle_price_with_zero_products_in_category():
+    category = Category(name="Категория", description="Описание", products=[])
+
+    assert category.middle_price() == 0
+
+
+def test_middle_price_with_products_in_category():
+    product1 = Product(name="Продукт", description="Описание", price=100.0, quantity=10)
+    product2 = Product(name="Продукт", description="Описание", price=1500.0, quantity=15)
+    category = Category(name="Категория", description="Описание", products=[])
+
+    category.add_product(product1)
+    category.add_product(product2)
+
+    assert category.middle_price() == 940.0
