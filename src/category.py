@@ -25,6 +25,17 @@ class Category:
         self.__products.append(product)
         Category.product_count += 1
 
+    def middle_price(self):
+        """Определяет среднюю цену всех товаров в категории"""
+        total_price = sum([float(product.quantity * product.price) for product in self.__products])
+        total_quantity = sum([product.quantity for product in self.__products])
+        try:
+            result = total_price / total_quantity
+        except ZeroDivisionError:
+            return 0
+        else:
+            return round(result, 1)
+
     @property
     def products(self):
         """Выводит список товаров категории"""
